@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro";
+import AuthorCard from "src/components/AuthorCard.astro";
+
+const authors = await getCollection("author");
+---
+
+<MainLayout title="Autores">
+  <section>
+    <h1
+      class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white mb-4"
+    >
+      Autores
+    </h1>
+    <a href="/" class="text-blue-500 underline">Regresar</a>
+  </section>
+
+  <section class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+    <!-- AuthorCard -->
+    {authors.map((author) => <AuthorCard author={author} />)}
+  </section>
+</MainLayout>
